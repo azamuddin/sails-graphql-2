@@ -1,6 +1,6 @@
 {
   "name": "sails-graphql-2",
-  "version": "0.1.0",
+  "version": "0.1.1-beta.0",
   "description": "A tool for generating GraphQL Schema based on Sails models' configuration",
   "main": "lib/index.js",
   "scripts": {
