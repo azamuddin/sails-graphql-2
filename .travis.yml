@@ -4,6 +4,7 @@ node_js:
 install:
   - npm install
 script: npm run compile
+skip_cleanup: true
 deploy:
   provider: npm
   email: mas.azamuddin@gmail.com
