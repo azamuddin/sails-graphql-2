@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - 11.5.0
+install:
+  - npm install
+script: npm run compile
+deploy:
+  provider: npm
+  email: mas.azamuddin@gmail.com
+  api_key:
+    secure: JdOUY266qE7dMsGGVl+XEnH+ds05PSYIgy8AHppPrp7KVy982yhJw8cma8uMkOQ1WMMQOVwwqtr5ceC4ITlIE0MfGt8vLfSjnLdwibjk4jfNWTRzGFKrN/3R8rKck2IsirVM3hjYYWBftCzEvQtNrWmyBJJ27rg7fQ8LpduI3Ml1i/8hgTv/erP8+u5a3dbI7VSWrhra1zb27pVEiuIJ11XOWLI1ceLfPQM7X7Vq1NWmecHRccpO95xgBtC44ByJJtOHhUqH+O3LN9/hTAuj20qTam+Z4oszs5OpU7w0xtWIBJnXpxeD2UhvzasVZhYWHXxib6nfRRtMVcX2iXeaqFurPv5gRI12PjLKdvamwPZZOzP1faRRkR9LJ/i5PEvPqAvaYlSzC0lBt6W2GyLP9ed2UpdT0JDopV04jkyyZVtuflrg9sq7bpd4rB9LpJMTfE2olRSvzD19IhpqK+7HrQpzK3DUe99Eo8D1cd6lWj36jmeJdUHqySXkq4wdLQAp/QnTVAdh50g9wP8YADvpcBydyPkb7G4952zhbAxaiiIXpDPKJj0PzJ8mwg7CJtISh/53IxTvLswePNyf4DU+uVsDi/GGEQBFa49gAQtMeB+yE+WVKQyLXsc5MgfIWCnC6Pu/sT/or32/RBrIe+SwBmAX4YSd5mAaA89Pn/Yrens=
+  on:
+    tags: true
+    repo: azamuddin/sails-graphql-2
