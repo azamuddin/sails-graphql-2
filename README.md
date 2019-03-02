@@ -1,4 +1,10 @@
-# Sails models -> GraphQL schema
+# sails-graphql-2
+
+Since the original project [sails-graphql](https://github.com/zhukmj/sails-graphql) seems to
+be abandoned. I decide to fork and maintain this project as a separate repository.
+
+## Sails models -> GraphQL schema
+
 This module will help you to create GraphQL schema of each model in your Sails application.
 It uses Waterline configuration files for creating GraphQL objects and `sails.request()` method for performing internal requests and resolving queries/mutations.
 
@@ -7,7 +13,9 @@ npm install sails-graphql --save
 ```
 
 ## Quick example
+
 Assume you have two models: Author and Article
+
 ```javascript
 /**
  * api/models/Author.js
@@ -15,11 +23,11 @@ Assume you have two models: Author and Article
 module.exports = {
   attributes: {
     name: {
-      type: 'string'
+      type: "string"
     },
     articles: {
-      collection: 'article',
-      via: 'author'
+      collection: "article",
+      via: "author"
     }
   }
 };
@@ -30,14 +38,14 @@ module.exports = {
 module.exports = {
   attributes: {
     name: {
-      type: 'string'
+      type: "string"
     },
     slug: {
-      type: 'string',
+      type: "string",
       unique: true
     },
     author: {
-      model: 'author'
+      model: "author"
     }
   }
 };
@@ -46,8 +54,8 @@ module.exports = {
 Then `sails-graphql` will generate you the following schema:
 
 ```javascript
-import { generateSchema } from 'sails-graphql';
-import { printSchema } from 'graphql';
+import { generateSchema } from "sails-graphql";
+import { printSchema } from "graphql";
 
 // expected that sails is defined globally
 const schema = generateSchema(sails.models);
@@ -136,51 +144,57 @@ console.log(printSchema(schema));
  * }
  *
  */
-
 ```
 
 ## Usage
+
 1. Make sure you have `sails` and `graphql` installed
 2. Run `npm install sails-graphql --save`
 3. Create a GraphQLController
+
 ```javascript
 /**
  * api/controllers/GraphQLController.js
  */
-import { graphql } from 'graphql';
-import { generateSchema } from 'sails-graphql';
+import { graphql } from "graphql";
+import { generateSchema } from "sails-graphql";
 
 let schema = null;
 
 module.exports = {
-  index(req, res) { // default index action
+  index(req, res) {
+    // default index action
 
     if (!schema) {
       schema = generateSchema(sails.models);
     }
 
     graphql(
-      schema,                       // generated schema
-      req.body,                     // graphql query string
-      null,                         // default rootValue
-      {                             // context
-        request: sails.request,     // default request method - required
-        reqData: {                  // object of any data you want to forward to server's internal request
-          headers: {/*your headers to forward */}
+      schema, // generated schema
+      req.body, // graphql query string
+      null, // default rootValue
+      {
+        // context
+        request: sails.request, // default request method - required
+        reqData: {
+          // object of any data you want to forward to server's internal request
+          headers: {
+            /*your headers to forward */
+          }
         }
       }
-    ).then((result) => {
+    ).then(result => {
       // errors handling
       res.json(result.data);
     });
   }
 };
-
 ```
+
 Try to `POST` some query to `/graphql`. That's it!
 
-
 ## License
+
 The MIT License (MIT)
 
 Copyright (c) 2016 zhukmj
